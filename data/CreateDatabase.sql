@@ -1,5 +1,5 @@
+DROP DATABASE IF EXISTS auction;
 create database auction;
-
 CREATE TABLE auction.product_info(
 	ProductID int not null AUTO_INCREMENT,
     NameProduct nvarchar(100),
@@ -20,13 +20,13 @@ CREATE TABLE auction.CategoryLV1(
 CREATE TABLE auction.CategoryLV2(
 	CateIDLV2 int NOT NULL AUTO_INCREMENT,
     CateIDLV1 int NOT NULL,
-    NameCate nvarchar(100),
+    CateName nvarchar(100),
 	PRIMARY KEY (CateIDLV2)
 );
 CREATE TABLE auction.list_catogories(
 	CateIDLV2 int NOT NULL,
 	ProductID int NOT NULL,
-	PRIMARY KEY (CateIDLV2)
+	PRIMARY KEY (CateIDLV2,ProductID)
 );
 CREATE TABLE auction.User(
 	UserID int NOT NULL AUTO_INCREMENT,
@@ -61,7 +61,7 @@ ALTER TABLE  auction.CategoryLV2
 ADD CONSTRAINT FK_IDCateLV1 FOREIGN KEY (CateIDLV1) REFERENCES  auction.CategoryLV1(CateID);
 
 ALTER TABLE auction.list_catogories
-ADD CONSTRAINT FK_IDCateLV2 FOREIGN KEY (CateIDLV2) REFERENCES  auction.CategoryLV2(CateIDLV1),
+ADD CONSTRAINT FK_IDCateLV2 FOREIGN KEY (CateIDLV2) REFERENCES  auction.CategoryLV2(CateIDLV2),
 ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES  auction.product_info(ProductID);
 
 
@@ -75,6 +75,9 @@ ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES   auction.product_i
 
 ALTER TABLE auction.bill_detail
 ADD CONSTRAINT FK_AuctionID FOREIGN KEY (AuctionID) REFERENCES   auction.bidding_history(AuctionID);
+
 use auction;
 select*from CategoryLV1
+
+
 
