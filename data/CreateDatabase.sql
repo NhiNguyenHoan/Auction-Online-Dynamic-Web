@@ -12,21 +12,15 @@ CREATE TABLE auction.product_info(
     Step int,
     PRIMARY KEY (ProductID)
 );
-CREATE TABLE auction.CategoryLV1(
+CREATE TABLE auction.Category(
 	CateID int NOT NULL AUTO_INCREMENT,
     CateName nvarchar(100),
 	PRIMARY KEY (CateID)
 );
-CREATE TABLE auction.CategoryLV2(
-	CateIDLV2 int NOT NULL AUTO_INCREMENT,
-    CateIDLV1 int NOT NULL,
-    CateName nvarchar(100),
-	PRIMARY KEY (CateIDLV2)
-);
-CREATE TABLE auction.list_catogories(
-	CateIDLV2 int NOT NULL,
+CREATE TABLE auction.list_categories(
+	CateID int NOT NULL,
 	ProductID int NOT NULL,
-	PRIMARY KEY (CateIDLV2,ProductID)
+	PRIMARY KEY (CateID,ProductID)
 );
 CREATE TABLE auction.User(
 	UserID int NOT NULL AUTO_INCREMENT,
@@ -57,11 +51,9 @@ CREATE TABLE auction.bill_detail(
     PhoneNumber char(10),
 	PRIMARY KEY (AuctionID)
 );
-ALTER TABLE  auction.CategoryLV2
-ADD CONSTRAINT FK_IDCateLV1 FOREIGN KEY (CateIDLV1) REFERENCES  auction.CategoryLV1(CateID);
 
-ALTER TABLE auction.list_catogories
-ADD CONSTRAINT FK_IDCateLV2 FOREIGN KEY (CateIDLV2) REFERENCES  auction.CategoryLV2(CateIDLV2),
+ALTER TABLE auction.list_categories
+ADD CONSTRAINT FK_IDCate FOREIGN KEY (CateID) REFERENCES  auction.Category(CateID),
 ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES  auction.product_info(ProductID);
 
 
@@ -77,7 +69,6 @@ ALTER TABLE auction.bill_detail
 ADD CONSTRAINT FK_AuctionID FOREIGN KEY (AuctionID) REFERENCES   auction.bidding_history(AuctionID);
 
 use auction;
-select*from CategoryLV1
 
 
 
