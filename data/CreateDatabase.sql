@@ -2,8 +2,9 @@ DROP DATABASE IF EXISTS auction;
 create database auction;
 CREATE TABLE auction.product_info(
 	ProductID int not null AUTO_INCREMENT,
+    CateID int NOT NULL,
     NameProduct nvarchar(100),
-    Descript nvarchar(3000),
+    Descript text,
     BuyDate datetime,
     EndDate datetime,
     Seller int NOT NULL,
@@ -17,11 +18,13 @@ CREATE TABLE auction.Category(
     CateName nvarchar(100),
 	PRIMARY KEY (CateID)
 );
+/*
 CREATE TABLE auction.list_categories(
 	CateID int NOT NULL,
 	ProductID int NOT NULL,
 	PRIMARY KEY (CateID,ProductID)
 );
+*/
 CREATE TABLE auction.User(
 	UserID int NOT NULL AUTO_INCREMENT,
     FullName nvarchar(100),
@@ -52,10 +55,10 @@ CREATE TABLE auction.bill_detail(
 	PRIMARY KEY (AuctionID)
 );
 
-ALTER TABLE auction.list_categories
+/*ALTER TABLE auction.list_categories
 ADD CONSTRAINT FK_IDCate FOREIGN KEY (CateID) REFERENCES  auction.Category(CateID),
 ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES  auction.product_info(ProductID);
-
+*/
 
 ALTER TABLE auction.product_info
 ADD CONSTRAINT FK_Seller FOREIGN KEY (Seller) REFERENCES  auction.User(UserID);
