@@ -1,0 +1,60 @@
+<div class="card shadow mb-4">
+  <h4 class="card-header">
+    Products
+  </h4>
+
+  {{#if this.empty}}
+  <div class="card-body">
+    <p class="card-text">
+      Không có dữ liệu.
+    </p>
+  </div>
+  {{else}}
+  <div class="card-body" >
+    <div class="row">
+      {{#each this.products}}
+      <div class="col-sm-3 mb-3">
+        <div class="card h-100" >
+          <img src="/imgs/sp/{{ProductID}}/main_thumbs.jpg" alt="{{NameProduct}}" title="{{NameProduct}}" class="card-img-top">
+          <div class="card-body" >
+            <a href='#' class="cus_brand text-dark"><h6 class="card-title"  >{{NameProduct}}</h6></a>
+            <h5 class="card-title text-danger">Current Price: {{format StartPricce}}</h5>
+            <a class="card-title text-warning">Buy It Now: {{format BIN}}</a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <nav>
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <a class="page-link" href="?page={{prev_value}}">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+              </a>
+            </li>
+            {{#each this.page_numbers}}
+            {{#if isCurrentPage}}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span></a>
+            </li>
+            {{else}}
+            <li class="page-item">
+              <a class="page-link" href="?page={{value}}">{{value}}</a>
+            </li>
+            {{/if}}
+            {{/each}}
+            <li class="page-item">
+              <a class="page-link" href="?page={{next_value}}">
+                <i class="fa fa-forward" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+</div>
