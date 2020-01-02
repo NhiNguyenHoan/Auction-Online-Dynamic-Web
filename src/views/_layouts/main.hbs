@@ -84,9 +84,11 @@ background-color: rgb(222, 223, 224);
             <a class="brand cus_brand" href="#">Online Auction</a>
 
             <!--Search-->
-            <form class="form-inline " action="/action_page.php">
-                <input class="form-control rounded-0" type="text" placeholder="Search">
-                <button class="btn cus_btn rounded-0" type="submit"><i class="fa fa-search"></i></button>
+            <form class="form-inline " action="/search" method="POST">
+                <input class="form-control rounded-0" type="search" placeholder="Search" id="inputSearch" name="inputSearch">
+                <button class="btn cus_btn rounded-0" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
             </form>
             <div class="collapse navbar-collapse flex-grow-1 text-right">
                 <ul class="navbar-nav ml-auto flex-nowrap">

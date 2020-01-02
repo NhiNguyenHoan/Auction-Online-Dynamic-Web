@@ -21,4 +21,5 @@ module.exports = {
     },
     detai: id => db.load(`select * from product_info where CateID = ${id}`),
     delP: id => db.del('product_info', { ProductID: id }),
+    search: inputSearch => db.load(`select * from product_info where NameProduct like '%${inputSearch}%'`),
 };

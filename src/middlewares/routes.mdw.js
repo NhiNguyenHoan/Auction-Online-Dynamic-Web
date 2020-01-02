@@ -3,4 +3,5 @@ module.exports = function(app) {
     app.use('/categories', require('../routes/category.route'));
     app.use('/admin/categories', require('../routes/admin/category.route'));
     app.use('/admin/users', require('../routes/admin/user.route'));
+    app.use('/search', require('../routes/main.route'));
 };
