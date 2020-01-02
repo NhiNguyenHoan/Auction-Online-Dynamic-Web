@@ -27,8 +27,9 @@ CREATE TABLE auction.list_categories(
 */
 CREATE TABLE auction.User(
 	UserID int NOT NULL AUTO_INCREMENT,
+    UserName varchar(100) NOT NULL UNIQUE,
     FullName nvarchar(100),
-    pass varchar(100),
+    pass varchar(100)  NOT NULL,
     Address nvarchar(200),
     Email varchar(50),
     PhoneNumber char(10),
@@ -60,16 +61,15 @@ CREATE TABLE auction.WatchList(
     ProductID  int NOT NULL,
 	PRIMARY KEY (UserID, ProductID)
 );
-/*ALTER TABLE auction.list_categories
-ADD CONSTRAINT FK_IDCate FOREIGN KEY (CateID) REFERENCES  auction.Category(CateID),
-ADD CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES  auction.product_info(ProductID);
-*/
+
 
 ALTER TABLE auction.product_info
-ADD CONSTRAINT FK_Seller FOREIGN KEY (Seller) REFERENCES  auction.User(UserID);
 
+ADD CONSTRAINT FK_Seller FOREIGN KEY (Seller) REFERENCES  auction.User(UserID),
+ADD CONSTRAINT FK_Category FOREIGN KEY (CateID) REFERENCES   auction.Category(CateID);
 
 ALTER TABLE auction.bidding_history
+
 ADD CONSTRAINT FK_Bidder FOREIGN KEY (Bidder) REFERENCES  auction.User(UserID),
 ADD CONSTRAINT FK_Product FOREIGN KEY (ProductID) REFERENCES   auction.product_info(ProductID);
 
@@ -77,8 +77,8 @@ ALTER TABLE auction.bill_detail
 ADD CONSTRAINT FK_AuctionID FOREIGN KEY (AuctionID) REFERENCES   auction.bidding_history(AuctionID);
 
 ALTER TABLE auction.watchlist
-ADD CONSTRAINT FK_product_watchlist FOREIGN KEY (UserID) REFERENCES  auction.User(UserID),
-ADD CONSTRAINT FK_user_watchlist FOREIGN KEY (ProductID) REFERENCES   auction.product_info(ProductID);
+ADD CONSTRAINT FK_user_watchlist FOREIGN KEY (UserID) REFERENCES  auction.User(UserID),
+ADD CONSTRAINT FK_product_watchlist FOREIGN KEY (ProductID) REFERENCES   auction.product_info(ProductID);
 use auction;
 
 
