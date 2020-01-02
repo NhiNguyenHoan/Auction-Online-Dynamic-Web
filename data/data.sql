@@ -220,6 +220,11 @@ INSERT INTO `auction`.`bill_detail` (`AuctionID`, `Address`, `Email`, `PhoneNumb
 INSERT INTO `auction`.`bill_detail` (`AuctionID`, `Address`, `Email`, `PhoneNumber`) VALUES ('7', '227 Nguyễn Văn Cừ', 'tuyetnhi@gmail.com', '0123456789');
 INSERT INTO `auction`.`bill_detail` (`AuctionID`, `Address`, `Email`, `PhoneNumber`) VALUES ('11', '227 Nguyễn Văn Cừ', 'anhphi@gmail.com', '0123456789');
 
+-- watch list
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('1','1');
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('1','2');
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('2','3');
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('2','4');
 /*
 -- list cat
 INSERT INTO `auction`.`list_categories` (`CateID`, `ProductID`) VALUES ('1', '1');
