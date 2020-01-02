@@ -1,0 +1,56 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Categories
+  </h4>
+
+  {{#if this.empty}}
+  <div class="card-body">
+    <p class="card-text">
+      Không có dữ liệu.
+    </p>
+  </div>
+  {{else}}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">ProductID</th>
+        <th scope="col">CateID</th>
+        <th scope="col">Name Product</th>
+        <th scope="col">Descript</th>
+        <th scope="col">BuyDate</th>
+        <th scope="col">EndDate</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Start</th>
+          {{!-- <a class="btn btn-outline-success" href="/admin/categories/add" role="button">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          Add category
+          </a> --}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each this.categories}}
+      <tr>
+        <th scope="row" class="text-center">{{ProductID}}</th>
+        <td>{{CateID}}</td>
+        <td>{{NameProduct}}</td>
+        <td>{{Descript}}</td>
+        <td>{{BuyDate}}</td>
+        <td>{{EndDate}}</td>
+        <td>{{Seller}}</td>
+        <td>{{Star}}</td>
+        <td class="text-right">
+          <button type="submit" class="btn btn-outline-danger" formaction="/admin/categories/detail/{{CateID}}/delete">
+               <i class="fa fa-trash-o" aria-hidden="true"></i>
+                Delete
+            </button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
+  <div class="card-footer text-muted">
+    Footer
+  </div>
+</div>
