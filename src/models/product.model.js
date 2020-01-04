@@ -11,6 +11,7 @@ module.exports = {
     },
     pageByCat: (catId, offset) => db.load(`select * from product_info where CateID = ${catId} limit ${config.paginate.limit} offset ${offset}`),
     single: id => db.load(`select * from product_info where ProductID = ${id}`),
+    single_info_seller: id => db.load(`select * from product_info as p join user as u on p.Seller =u.UserID where ProductID = ${id}`),
     add: entity => db.add('product_info', entity),
     del: id => db.del('product_info', { ProductID: id }),
     patch: entity => {

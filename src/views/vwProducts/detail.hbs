@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+  .color
+  {
+    color: #8AD8CE;
+  }
+
+
+
+.cus_brand {
+    font-size: 30px;
+    margin-right: 30px;
+    color: #8AD8CE;
+    display: flex;
+    align-items: center;
+}
+
+.cus_brand:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.cus_btn {
+    background-color: #8AD8CE;
+}
+
+.cus_active
+{
+background-color: rgb(222, 223, 224);
+}
+
+ /*CSS SLIDE*/
+        
+        .slideshow-container {
+            max-width: 400px;
+            position: relative;
+            margin-left: 130px;
+        }
+        
+        .mySlides {
+            display: none;
+            height: 400px;
+            border: solid 1px black;
+        }
+        
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            margin-top: -22px;
+            padding: 16px;
+            color: #7e828b;
+            font-weight: bold;
+            font-size: 30px;
+            transition: .6s ease;
+            border-radius: 0 3px 3px 0
+        }
+        
+        .next {
+            right: -50px;
+            border-radius: 3px 3px 3px 3px
+        }
+        
+        .prev {
+            left: -50px;
+            border-radius: 3px 3px 3px 3px
+        }
+        
+        .prev:hover,
+        .next:hover {
+            color: #f2f2f2;
+            background-color: grey;
+        }
+            /*Table CSS*/
+        
+        .my-custom-scrollbar {
+            position: relative;
+            height: 15rem;
+            overflow: auto;
+        }
+        
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+        /*Table CSS*/
+    </style>
+
+</head>
+
+<body>
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="d-flex flex-grow-1 mx-sm-5">
+            <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+
+            <img src="https://img.icons8.com/clouds/100/000000/auction.png">
+            <a class="brand cus_brand" href="#">Online Auction</a>
+
+            <!--Search-->
+            <form class="form-inline " action="/search" method="POST">
+                <input class="form-control rounded-0" type="search" placeholder="Search" id="inputSearch" name="inputSearch">
+                <button class="btn cus_btn rounded-0" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+            </form>
+            <form id="frmLogout" method="post" action="/account/logout"></form>
+            <div class="collapse navbar-collapse flex-grow-1 text-right">
+                <ul class="navbar-nav ml-auto flex-nowrap">
+ {{#if isAuthenticated}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="WatchList.html"><i class="fa fa-star"></i>Watch list</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sell.html">Sell</a>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="fa fa-user-circle"></i>Hi,<b>{{authUser.UserName}}!</b>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="SuccessBidder.html">Purchase Order</a>
+                            <a class="dropdown-item" href="SuccessSeller.html">Sales Order</a>
+                            <a class="dropdown-item" href="EditInformation.html">Edit Information</a>
+            {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}                            
+                            <a class="dropdown-item" href="home_login.html">Log out</a>
+                        </div>
+                    </li>
+                     {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/account/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/account/login">Login</a>
+        </li>
+        {{/if}}
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+  
+</br>
+ <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">BID</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+
+                        <p> <label for="bid">Bid Amount </label> <input type="text" id="bid" name="bid" placeholder="bid" style="margin-left: 30px;"></p>
+                        <p>Min Amount:<a style="color:#8AD8CE; font-size:20px">&ensp; 10.000 đ</a> </p>
+
+                    </form>
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn cus_btn btn-info" data-dismiss="modal">Confirm</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!---->
+
+    <div class="row">
+        <div class="col-md-5">
+            <!--SLIDE-->
+            <div class="slideshow-container">
+                <div class="slideshow-inner">
+                    <div class="mySlides">
+                        <img src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg' style='width: 100% ; height: 400px;' alt="FCD8D9" />
+                    </div>
+                    <div class="mySlides">
+                        <img src='/imgs/sp/{{this.products.ProductID}}/a.jpg' style='width: 100% ; height: 400px;' alt="D8EEEC" />
+                    </div>
+                    <div class="mySlides">
+                        <img src='/imgs/sp/{{this.products.ProductID}}/b.jpg' style='width: 100%; height: 400px;' alt="CAD6EE" />
+                    </div>
+                    <div class="mySlides">
+                        <img src='/imgs/sp/{{this.products.ProductID}}/c.jpg' style='width: 100% ; height: 400px;' alt="FEDABE" />
+                    </div>
+                </div>
+                <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
+                <a class="next" onclick='plusSlides(1)'>&#10095;</a>
+            </div>
+            <br />
+
+            <div style='margin-left:125px;' style="background-color: green;">
+                <span class="a" onclick='currentSlide(1)'><img
+            src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg' 
+            style='width: 100px ; height: 100px;' alt="FCD8D9" /></span>
+                <span class="a" onclick='currentSlide(2)'><img
+            src='/imgs/sp/{{this.products.ProductID}}/b.jpg'
+            style='width: 100px ; height: 100px;' alt="D8EEEC" /></span>
+                <span class="a" onclick='currentSlide(3)'><img
+            src='/imgs/sp/{{this.products.ProductID}}/c.jpg'
+            style='width: 100px ; height: 100px;' alt="CAD6EE" /></span>
+                <span class="a" onclick='currentSlide(4)'><img
+            src='/imgs/sp/{{this.products.ProductID}}/a.jpg'
+            style='width: 100px ; height: 100px;' alt="FEDABE" /></span>
+            </div>
+        </div>
+
+        <!--RIGHT COL-->
+
+        <div class="col-md-3">
+            <h4 class="title">{{this.products.NameProduct}}</h4>
+            <br>
+            <a>Begin Date:&ensp;{{this.products.BuyDate}}</a>
+            <br><br>
+            <a>End Date:&ensp;{{this.products.EndDate}}</a>
+            <br><br>
+            <p>Start Price:<a style="color:#8AD8CE; font-size:20px">&ensp;{{this.products.StartPricce}} $</a> </p>
+            <p>Step:<a style="color:#8AD8CE; font-size:20px">&ensp; {{this.products.Step}} $</a> </p>
+            <button class="btn cus_btn btn-success mb-2" style=" background-color:rgb(31, 190, 98);">Buy Now:<a style=" color:white;
+      font-size:20px; text-decoration-line: none;" href="Shopping.html" >&ensp; {{this.products.BIN}} $</a> </button>
+
+        
+                <p>Time left:
+                    <a style="color:#8AD8CE; font-size:20px">{{this.timeleft}}</a></p>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card" style="width: 23rem;">
+                <div class="card-header">
+                    <a>Bid Number:</a><a style="font-weight:bold"> 22</a>
+                    <button class="btn cus_btn fa fa-star" style="float:right"></button>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Current Price</h6>
+                    <h4 style="color:#8AD8CE">{{this.products.StartPricce}} $</h4>
+                    <p class="card-text">(Shipping fee are not included)</p>
+                    <a href="#" class="btn cus_btn" style="width:100%; font-weight: bold;font-size: large;" data-toggle="modal" data-target="#myModal">BID</a>
+
+                </div>
+            </div>
+            <br>
+            <div class="card" style="width: 23rem;">
+                <a class="card-header">Seller Information </a>
+                <div class="card-body">
+                    <a class="card-link" style="color:#8AD8CE;font-size: large;" href="Seller.html" style="font-size: large;">{{this.products.FullName}}</a>
+                    <p class="card-text">{{this.products.PhoneNumber}}</p>
+                    <img src="https://img.icons8.com/ios/50/000000/cloud.png" style="width:15px;height:15px">
+                    <a>Number Like:</a> <a>{{this.products.NumberLike}}</a><br>
+                    <img src="https://img.icons8.com/ios/50/000000/happy-cloud.png" style="width:15px;height:15px">
+                    <a>Number Dislike:</a> <a>{{this.products.NumberDislike}}</a>
+                </div>
+
+            </div>
+            <br>
+
+
+        </div>
+    </div>
+
+    </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-7" style="margin-left:100px;">
+            <!-- Nav tabs -->
+            <br>
+            <br>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#home">Product Overview</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="home" class="container tab-pane active"><br>
+                    <h4>{{this.products.NameProduct}}</h3>
+                        <p>{{this.products.Descript}}</p>
+                </div>
+            </div>
+            <!---->
+
+        </div>
+        <div class="col-md-3 " style="margin-left:30px;">
+            <div class="card" style="width: 23rem; height: 20rem;">
+                <a class="card-header">Bidding History </a>
+                <div class="card-body">
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+                        <table class="table table-bordered table-striped mb-0" style="font-size: 12px;">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col">Bid Time</th>
+                                    <th scope="col">Bidder</th>
+                                    <th scope="col">Bid Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background-color: #8AD8CE;">
+
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>10.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>1.000.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>10.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>10.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>10.000.000</td>
+                                </tr>
+                                <tr>
+                                    <td>01/11/2019 12:50</td>
+                                    <td>****Quân</td>
+                                    <td>100.000.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+-->
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        var slideIndex = 1;
+        var slideshowContainer;
+        window.addEventListener("load", function() {
+            showSlides(slideIndex);
+            slideshowContainer = document.getElementsByClassName('slideshow-inner')[0];
+            slideshowContainer.addEventListener('mouseenter', pause)
+            slideshowContainer.addEventListener('mouseleave', resume)
+        })
+
+        function plusSlides(n) {
+            if (n < 0) {
+                showSlides(slideIndex -= 1);
+            } else {
+                showSlides(slideIndex += 1);
+            }
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("a");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#dtHorizontalVerticalExample').DataTable({
+                "scrollX": true,
+                "scrollY": 200,
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+    <script>
+        $time = strtotime($datetimeFromMysql); 
+        $myFormatForView = date("m/d/y g:i A", $time);
+    </script>
+
+</body>
+
+</html>

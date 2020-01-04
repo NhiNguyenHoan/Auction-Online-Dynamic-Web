@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
   delete entity.dob;
 
   const result = await userModel.add(entity);
- res.render('vwAccount/register');
+  res.redirect('/');
 });
 
 router.get('/login', (req, res) => {
