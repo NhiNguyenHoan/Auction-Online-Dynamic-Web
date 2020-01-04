@@ -7,7 +7,7 @@
   <title>Example App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  {{{_sections.css}}}
 <style>
   .color
   {
@@ -90,9 +90,10 @@ background-color: rgb(222, 223, 224);
                   <i class="fa fa-search"></i>
                 </button>
             </form>
+            <form id="frmLogout" method="post" action="/account/logout"></form>
             <div class="collapse navbar-collapse flex-grow-1 text-right">
                 <ul class="navbar-nav ml-auto flex-nowrap">
-
+ {{#if isAuthenticated}}
                     <li class="nav-item">
                         <a class="nav-link" href="WatchList.html"><i class="fa fa-star"></i>Watch list</a>
                     </li>
@@ -103,15 +104,24 @@ background-color: rgb(222, 223, 224);
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            <i class="fa fa-user-circle"></i>Account
+                            <i class="fa fa-user-circle"></i>Hi,<b>{{authUser.UserName}}!</b>
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="SuccessBidder.html">Purchase Order</a>
                             <a class="dropdown-item" href="SuccessSeller.html">Sales Order</a>
                             <a class="dropdown-item" href="EditInformation.html">Edit Information</a>
+            {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}                            
                             <a class="dropdown-item" href="home_login.html">Log out</a>
                         </div>
                     </li>
+                     {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/account/register">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/account/login">Login</a>
+        </li>
+        {{/if}}
                 </ul>
 
             </div>
@@ -147,6 +157,7 @@ background-color: rgb(222, 223, 224);
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   {{{_sections.js}}}
 </body>
 
 </html>

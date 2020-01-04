@@ -1,5 +1,9 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+//section: tạo các {{{}}}
+const hbs_sections = require('express-handlebars-sections');
+const session = require('express-session');
+//morgan:tạo ra log các request đến server
 //morgan:tạo ra log các request đến server
 const morgan = require('morgan');
 //để bắt hết các lỗi vô chung render
@@ -12,6 +16,14 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
+app.use(session({
+  secret:'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+
+}))
+//e
 //express static hỗ trợ tạo route cho các tệp trong folder
 app.use(express.static('public'));
 
@@ -21,7 +33,9 @@ app.engine('hbs', exphbs({
   //hbr cho xây dựng hàm gọi là helper
   helpers: {
     //hàm thêm kí tự $ vào chuỗi tiền
-    format: val =>  val +'$'
+    format: val =>  val +'$',
+     //section:{{{}}}
+     section: hbs_sections(),
   }
 
 }));
@@ -35,6 +49,7 @@ require('./middlewares/routes.mdw')(app);
 
 app.get('/', (req, res) => {
   // res.end('hello from expressjs');
+  console.log(res.locals.authUser);
   res.render('home');
 })
 
