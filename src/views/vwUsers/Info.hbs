@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-7" style=" background-color: #8AD8CE;">
+            <div class="row avatar">
+                <div class="col-4"> <img src="images/boy.png" width="120px" height="120px"
+                        style="border-radius: 50%;">
+                    <a class="btn btn-success mt-3" href="/user/information/edit" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Edit
+                    </a>
+                </div>
+                <div class="col-8" style="margin-top: 25px;">
+                    <p style="font-weight: bold;">{{user.FullName}}</p>
+                    <p>Phone Number: <a style="font-weight: bold;">{{user.PhoneNumber}}</a></p>
+                    <p>Email: <a style="font-weight: bold;">{{user.Email}}</a></p>
+                    <p>Address: <a style="font-weight: bold;">{{user.Address}}</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 rating">
+            <p>Product:<a style="color:rgb(13, 155, 136); font-size:20px">&ensp; 10</a> </p>
+            <p>Sold:<a style="color:rgb(13, 155, 136); font-size:20px">&ensp; 15</a> </p>
+            <p>Bought:<a style="color:rgb(13, 155, 136); font-size:20px">&ensp; 5</a> </p>
+        </div>
+        <div class="col-3 rating">
+            <p>Like:<a style="color:rgb(13, 155, 136); font-size:20px">&ensp; {{user.NumberLike}}</a> </p>
+            <p>Dislike:<a style="color:rgb(13, 155, 136); font-size:20px">&ensp; {{user.NumberDislike}}</a> </p>
+        </div>
+    </div>
+</div>

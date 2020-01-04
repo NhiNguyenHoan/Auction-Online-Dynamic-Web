@@ -1,4 +1,5 @@
 const db = require('../utils/db');
+const config = require('../config/default.json');
 //các hàm. 
 //entity là object truyền vào 
 module.exports = {
@@ -22,4 +23,9 @@ module.exports = {
     detai: id => db.load(`select * from product_info where CateID = ${id}`),
     delP: id => db.del('product_info', { ProductID: id }),
     search: inputSearch => db.load(`select * from product_info where NameProduct like '%${inputSearch}%'`),
+    countByCat: async inputSearch => {
+        const rows = await db.load(`select count(*) as total from product_info where NameProduct like '%${inputSearch}%'`)
+        return rows[0].total;
+    },
+    pageByCat: (inputSearch, offset) => db.load(`select * from product_info where NameProduct like '%${inputSearch}%' limit ${config.paginate.limit} offset ${offset}`),
 };

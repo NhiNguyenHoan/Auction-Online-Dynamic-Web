@@ -5,5 +5,5 @@ module.exports = function(app) {
     app.use('/account', require('../routes/account.route'));
     app.use('/admin/users', require('../routes/admin/user.route'));
     app.use('/search', require('../routes/main.route'));
-
+    app.use('/user/information', require('../routes/user/user.route'));
 };
