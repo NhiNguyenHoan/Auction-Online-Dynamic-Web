@@ -30,7 +30,7 @@
         <th scope="col">Start Price</th>
         <th scope="col">BIN</th>
         <th scope="col">Step</th>
-        <th scope="col">Delete</th>
+       
         </th>
       </tr>
     </thead>
@@ -49,11 +49,11 @@
         <td>{{Step}}</td>
         <td>
           
-          <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">
+          {{!-- <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">
             <button type="submit" class="btn btn-danger">
               <i class="fa fa-star" aria-hidden="true"></i>
             </button>
-          </form>
+          </form> --}}
         {{!-- <button type="submit" class="btn btn-outline-danger" formaction="/user/1/watchlist/delete" formmethod="POST">
                <i class="fa fa-star" aria-hidden="true"></i>             
             </button> --}}

@@ -23,14 +23,17 @@ module.exports = {
         const sql =
         `SELECT distinct p.*
         FROM bidding_history bh, product_info p
-        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} ;`;
+        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} AND p.enddate > now() ;`;
         return db.load(sql);
     },
     wonlist: id => {
         const sql =
-        `SELECT distinct p.*
+        `SELECT  p.*
         FROM bidding_history bh, product_info p
-        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} ;`;
+        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} AND bh.bidamount= (SELECT MAX(bh2.bidamount)
+                                                                        FROM bidding_history bh2
+                                                                        WHERE bh2.ProductID= bh.ProductID)
+                                                            AND p.enddate < now()`;
         return db.load(sql);
     },
     delWL: (ProID, id) => {
