@@ -27,7 +27,16 @@ router.get('/biddinglist', async (req, res) => {
         empty: rows.length === 0
     });
 })
+router.get('/wonlist', async (req, res) => {
+  
+    
+    const rows = await AboutUserModel.wonlist(res.locals.authUser.UserID);
 
+    res.render('vwAboutUser/wonlist', {
+        categories: rows,
+        empty: rows.length === 0
+    });
+})
 router.post('/watchlist/search', async(req, res) => {
     const rows = await AboutUserModel.search(req.body.inputSearchWL,res.locals.authUser.UserID);
     console.log(req.body.inputSearchWL);
@@ -42,8 +51,6 @@ router.post('/watchlist/delete/:ProductID', async(req, res) => {
    console.log('route');
     console.log(+req.param.ProductID);
     console.log(res.locals.authUser.UserID);
-    const userid=res.locals.authUser.UserID;
-    console.log(userid);
     res.redirect('/user/watchlist');
 })
 module.exports = router;

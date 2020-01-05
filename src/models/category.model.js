@@ -6,6 +6,7 @@ module.exports = {
     all: () => db.load('select * from Category'),
     single: id => db.load(`select * from Category where CateID = ${id}`),
     add: entity => db.add('Category', entity),
+   
     del: id => db.del('Category', { CateID: id }),
     patch: entity => {
         const condition = { CateID: entity.CateID };

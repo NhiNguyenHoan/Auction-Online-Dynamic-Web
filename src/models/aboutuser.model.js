@@ -13,13 +13,20 @@ module.exports = {
     // detai: id => db.load(`select * from product_info where CateID = ${id}`),
     watchlist: id => {
         const sql =
-            `SELECT p.*
+            `SELECT p.* 
     FROM watchlist w, product_info p
     WHERE w.UserID=${id} AND w.ProductID = p.ProductID`;
         return db.load(sql);
     },
  
     biddinglist: id => {
+        const sql =
+        `SELECT distinct p.*
+        FROM bidding_history bh, product_info p
+        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} ;`;
+        return db.load(sql);
+    },
+    wonlist: id => {
         const sql =
         `SELECT distinct p.*
         FROM bidding_history bh, product_info p
