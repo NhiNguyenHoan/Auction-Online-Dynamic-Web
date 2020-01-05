@@ -2,7 +2,7 @@
   <h4 class="card-header">
     <a style="color: #8AD8CE;">Watch List</a>
     <!--Search-->
-    <form class="form-inline " action="/user/1/watchlist/search" method="POST" style="float: right;">
+    <form class="form-inline " action="/user/watchlist/search" method="POST" style="float: right;">
       <input class="form-control rounded-0" type="search" placeholder="Search" id="inputSearchWL" name="inputSearchWL">
       <button class="btn cus_btn rounded-0" type="submit">
         <i class="fa fa-search"></i>
@@ -49,7 +49,7 @@
         <td>{{Step}}</td>
         <td>
           
-          <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">
+          <form class="form-inline " action="/user/watchlist/delete/{{ProductID}}" method="POST">
             <button type="submit" class="btn btn-danger">
               <i class="fa fa-star" aria-hidden="true"></i>
             </button>

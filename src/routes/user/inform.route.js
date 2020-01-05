@@ -13,35 +13,37 @@ router.get('/', async(req, res) => {
 //
 // xem ds watchlist theo id user :id
 //dấu : để hiện giá trị
-router.get('/:id/watchlist', async (req, res) => {
-    const rows = await AboutUserModel.watchlist(+req.params.id);
+router.get('/watchlist', async (req, res) => {
+    const rows = await AboutUserModel.watchlist(res.locals.authUser.UserID);
     res.render('vwAboutUser/watchlist', {
         categories: rows,
         empty: rows.length === 0
     });
 })
-router.get('/:id/biddinglist', async (req, res) => {
-    const rows = await AboutUserModel.biddinglist(+req.params.id);
+router.get('/biddinglist', async (req, res) => {
+    const rows = await AboutUserModel.biddinglist(res.locals.authUser.UserID);
     res.render('vwAboutUser/biddinglist', {
         categories: rows,
         empty: rows.length === 0
     });
 })
 
-router.post('/:id/watchlist/search', async(req, res) => {
-    const rows = await AboutUserModel.search(req.body.inputSearchWL,+req.params.id);
+router.post('/watchlist/search', async(req, res) => {
+    const rows = await AboutUserModel.search(req.body.inputSearchWL,res.locals.authUser.UserID);
     console.log(req.body.inputSearchWL);
-    console.log(+req.params.id);
+    console.log(res.locals.authUser.UserID);
     res.render('vwAboutUser/watchlist', {
         categories: rows,
         empty: rows.length === 0
     });
 })
-router.post('/:id/watchlist/delete/:ProductID', async(req, res) => {
-    const result = await AboutUserModel.delWL(+req.params.ProductID,+req.params.id);
+router.post('/watchlist/delete/:ProductID', async(req, res) => {
+    const result = await AboutUserModel.delWL(+req.params.ProductID,res.locals.authUser.UserID);
    console.log('route');
     console.log(+req.param.ProductID);
-    console.log(+req.params.id);
-    res.redirect('/user/:id/watchlist');
+    console.log(res.locals.authUser.UserID);
+    const userid=res.locals.authUser.UserID;
+    console.log(userid);
+    res.redirect('/user/watchlist');
 })
 module.exports = router;
