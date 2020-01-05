@@ -202,17 +202,25 @@ INSERT INTO `auction`.`product_info` (`CateID`,`NameProduct`, `Descript`, `BuyDa
 
 -- bidding history
 
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '1', '2019-10-21 00:01:01', '30');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('4', '1', '2019-10-21 23:01:01', '35');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('5', '1', '2019-10-25 00:01:01', '50');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('6', '1', '2019-10-29 00:01:01', '90');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('5', '2', '2019-11-11 00:01:01', '100');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('4', '2', '2019-11-29 00:01:01', '110');
-INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '2', '2019-11-29 23:01:01', '120');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('1', '4', '2019-10-21 00:01:01', '30');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('2', '4', '2019-10-22 00:01:01', '35');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('1', '4', '2019-10-22 00:03:01', '40');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('1', '5', '2019-10-22 00:03:01', '40');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '5', '2019-10-23 00:03:01', '45');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('1', '2', '2019-10-24 00:03:01', '50');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '2', '2019-10-24 00:05:01', '60');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('4', '3', '2019-11-29 00:01:01', '110');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '3', '2019-11-29 23:01:01', '120');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('2', '3', '2019-05-05 23:01:01', '20');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('4', '3', '2019-05-29 23:01:01', '30');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('5', '3', '2019-06-29 23:01:01', '50');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('6', '3', '2019-07-01 23:01:01', '100');
+
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('7', '1', '2020-1-21 00:01:01', '30');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('2', '1', '2020-1-22 00:01:01', '35');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('7', '1', '2020-1-23 00:03:01', '40');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('7', '2', '2020-2-22 00:03:01', '65');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '2', '2020-2-23 00:03:01', '75');
 
 
 -- bill detail
@@ -225,6 +233,8 @@ INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('1','1');
 INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('1','2');
 INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('2','3');
 INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('2','4');
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('7','1');
+INSERT INTO `auction`.`watchlist` (`UserID`, `ProductID`) VALUES ('7','2');
 /*
 -- list cat
 INSERT INTO `auction`.`list_categories` (`CateID`, `ProductID`) VALUES ('1', '1');

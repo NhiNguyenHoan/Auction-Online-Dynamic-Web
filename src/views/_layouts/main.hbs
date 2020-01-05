@@ -93,9 +93,9 @@ background-color: rgb(222, 223, 224);
             <form id="frmLogout" method="post" action="/account/logout"></form>
             <div class="collapse navbar-collapse flex-grow-1 text-right">
                 <ul class="navbar-nav ml-auto flex-nowrap">
- {{#if isAuthenticated}}
+                {{#if isAuthenticated}}
                     <li class="nav-item">
-                        <a class="nav-link" href="WatchList.html"><i class="fa fa-star"></i>Watch list</a>
+                        <a class="nav-link" href="/user/{{authUser.UserID}}/watchlist"><i class="fa fa-star"></i>Watch list</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sell.html">Sell</a>
