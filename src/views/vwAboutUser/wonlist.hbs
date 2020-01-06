@@ -21,40 +21,41 @@
     <thead>
       <tr>
         <th scope="col" class="text-center">ProductID</th>
-        <th scope="col">CateID</th>
+        <th scope="col">Image</th>
         <th scope="col">Name Product</th>
-        <th scope="col">Descript</th>
+        {{!-- <th scope="col">Descript</th> --}}
         <th scope="col">BuyDate</th>
         <th scope="col">EndDate</th>
         <th scope="col">Seller</th>
         <th scope="col">Start Price</th>
         <th scope="col">BIN</th>
         <th scope="col">Step</th>
-       
+
         </th>
       </tr>
     </thead>
     <tbody>
       {{#each this.categories}}
       <tr>
-        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a></th>
-        <td>{{CateID}}</td>
-        <td> <a href="/categories/products/2"  style="color: black;">{{NameProduct}} </a></td>
-        <td>{{Descript}}</td>
+        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a>
+        </th>
+        <td> <img src="/imgs/sp/{{ProductID}}/main_thumbs.jpg" alt="{{NameProduct}}" title="{{NameProduct}}"></td>
+        <td> <a href="/categories/products/2" style="color: black;">{{NameProduct}} </a></td>
+        {{!-- <td>{{Descript}}</td> --}}
         <td>{{BuyDate}}</td>
         <td>{{EndDate}}</td>
-        <td>{{Seller}}</td>
+        <td>{{UserName}}</td>
         <td>{{StartPricce}}</td>
         <td>{{BIN}}</td>
         <td>{{Step}}</td>
         <td>
-          
+
           {{!-- <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">
             <button type="submit" class="btn btn-danger">
               <i class="fa fa-star" aria-hidden="true"></i>
             </button>
           </form> --}}
-        {{!-- <button type="submit" class="btn btn-outline-danger" formaction="/user/1/watchlist/delete" formmethod="POST">
+          {{!-- <button type="submit" class="btn btn-outline-danger" formaction="/user/1/watchlist/delete" formmethod="POST">
                <i class="fa fa-star" aria-hidden="true"></i>             
             </button> --}}
       </tr>

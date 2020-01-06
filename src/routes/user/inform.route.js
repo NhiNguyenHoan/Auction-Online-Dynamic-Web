@@ -1,9 +1,9 @@
 const express = require('express');
 const AboutUserModel = require("../../models/aboutuser.model");
-
+const categoriesmodel =  require("../../models/category.model");
 const router = express.Router();
 
-router.get('/', async(req, res) => {
+router.get('/', async (req, res) => {
     const rows = await AboutUserModel.all();
     res.render('vwAboutUser/index', {
         categories: rows,
@@ -23,13 +23,13 @@ router.get('/watchlist', async (req, res) => {
 router.get('/biddinglist', async (req, res) => {
     const rows = await AboutUserModel.biddinglist(res.locals.authUser.UserID);
     rows.forEach(async element => {
-        var bool =await  AboutUserModel.check({
+        var bool = await AboutUserModel.check({
             UserID: res.locals.authUser.UserID,
             ProductID: +element.ProductID
-          });
-          console.log(bool);
-        element.check=(bool.length>0);
-      });
+        });
+        console.log(bool);
+        element.check = (bool.length > 0);
+    });
     //console.log(rows);
     res.render('vwAboutUser/biddinglist', {
         categories: rows,
@@ -37,8 +37,8 @@ router.get('/biddinglist', async (req, res) => {
     });
 })
 router.get('/wonlist', async (req, res) => {
-  
-    
+
+
     const rows = await AboutUserModel.wonlist(res.locals.authUser.UserID);
 
     res.render('vwAboutUser/wonlist', {
@@ -46,9 +46,11 @@ router.get('/wonlist', async (req, res) => {
         empty: rows.length === 0
     });
 })
+
+// Selling
 router.get('/selling', async (req, res) => {
-  
-    
+
+
     const rows = await AboutUserModel.SellingProduct(res.locals.authUser.UserID);
 
     res.render('vwAboutUser/selling', {
@@ -56,16 +58,39 @@ router.get('/selling', async (req, res) => {
         empty: rows.length === 0
     });
 })
-router.get('/sold', async (req, res) => { 
+router.post('/selling/edit', async (req, res) => {
+
+    const rows = await AboutUserModel.single(req.body.editSell);
+    console.log(rows);
+    if (rows.length === 0) {
+        throw new Error('Invalid category id');
+    }
+    res.render('vwAboutUser/editmyproduct', {
+        product: rows[0]
+    });
+})
+router.post('/edit/:id', async (req, res) => {
+
+    const rows = await AboutUserModel.single(+req.params.id);
+    console.log(rows);
+    rows[0].Descript= req.body.FullDes;
+    console.log( rows[0].Descript);
+    await AboutUserModel.patch(rows[0]);
+    res.redirect('/user/selling');
+})
+
+// SOLD
+router.get('/sold', async (req, res) => {
     const rows = await AboutUserModel.SoldProduct(res.locals.authUser.UserID);
 
+   
     res.render('vwAboutUser/sold', {
         categories: rows,
         empty: rows.length === 0
     });
 })
-router.post('/watchlist/search', async(req, res) => {
-    const rows = await AboutUserModel.search(req.body.inputSearchWL,res.locals.authUser.UserID);
+router.post('/watchlist/search', async (req, res) => {
+    const rows = await AboutUserModel.search(req.body.inputSearchWL, res.locals.authUser.UserID);
     console.log(req.body.inputSearchWL);
     console.log(res.locals.authUser.UserID);
     res.render('vwAboutUser/watchlist', {
@@ -73,9 +98,9 @@ router.post('/watchlist/search', async(req, res) => {
         empty: rows.length === 0
     });
 })
-router.post('/watchlist/delete/:ProductID', async(req, res) => {
-    const result = await AboutUserModel.delWL(+req.params.ProductID,res.locals.authUser.UserID);
-   console.log('route');
+router.post('/watchlist/delete/:ProductID', async (req, res) => {
+    const result = await AboutUserModel.delWL(+req.params.ProductID, res.locals.authUser.UserID);
+    console.log('route');
     console.log(+req.param.ProductID);
     console.log(res.locals.authUser.UserID);
     res.redirect('/user/watchlist');

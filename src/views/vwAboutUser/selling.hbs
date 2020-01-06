@@ -30,31 +30,41 @@
         <th scope="col">Start Price</th>
         <th scope="col">BIN</th>
         <th scope="col">Step</th>
-       
+        <th scope="col">Edit</th>
         </th>
       </tr>
     </thead>
     <tbody>
       {{#each this.categories}}
       <tr>
-        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a></th>
+        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a>
+        </th>
         <td>{{CateID}}</td>
-        <td> <a href="/categories/products/2"  style="color: black;">{{NameProduct}} </a></td>
-        <td>{{Descript}}</td>
+        <td> <a href="/categories/products/2" style="color: black;">{{NameProduct}} </a></td>
+        <td>{{{Descript}}}</td>
         <td>{{BuyDate}}</td>
         <td>{{EndDate}}</td>
-        <td>{{Seller}}</td>
+      <td>{{UserName}}</td>
         <td>{{StartPricce}}</td>
         <td>{{BIN}}</td>
         <td>{{Step}}</td>
         <td>
-          
+          <form class="form-inline " action="/user/selling/edit" method="POST">
+            <input type="hidden" id="editSell" name="editSell" value="{{ProductID}}">
+            <button type="submit" class="btn btn-danger">
+              <i class="fa fa-edit" aria-hidden="true"></i>
+            </button>
+          </form>
+        </td>
+
+        <td>
+
           {{!-- <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">
             <button type="submit" class="btn btn-danger">
               <i class="fa fa-star" aria-hidden="true"></i>
             </button>
           </form> --}}
-        {{!-- <button type="submit" class="btn btn-outline-danger" formaction="/user/1/watchlist/delete" formmethod="POST">
+          {{!-- <button type="submit" class="btn btn-outline-danger" formaction="/user/1/watchlist/delete" formmethod="POST">
                <i class="fa fa-star" aria-hidden="true"></i>             
             </button> --}}
       </tr>

@@ -78,7 +78,12 @@ router.get('/products/:id', async (req, res) => {
     // })
     // rows[0].check = (bool!=false) 
     // console.log(rows)  
-  
+    var bool = await productModel.check({
+      UserID: res.locals.authUser.UserID,
+      ProductID: rows[0].ProductID
+    })
+    rows[0].check = (bool!=false) 
+    console.log(rows)  
   res.render('vwProducts/detail', {
     products: rows[0],
     empty: rows.length === 0,
