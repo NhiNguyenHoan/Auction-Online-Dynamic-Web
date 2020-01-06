@@ -225,6 +225,7 @@ INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidA
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '7', '2019-12-24 00:03:01', '80');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('7', '7', '2020-01-03 00:03:01', '85');
 INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '8', '2019-12-20 00:03:01', '1050');
+INSERT INTO `auction`.`bidding_history` (`Bidder`, `ProductID`, `BidTime`, `BidAmount`) VALUES ('3', '115', '2019-12-20 00:03:01', '1050');
 -- bill detail
 INSERT INTO `auction`.`bill_detail` (`AuctionID`, `Address`, `Email`, `PhoneNumber`) VALUES ('4', '227 Nguyễn Văn Cừ', 'anhphi@gmail.com', '0123456789');
 INSERT INTO `auction`.`bill_detail` (`AuctionID`, `Address`, `Email`, `PhoneNumber`) VALUES ('7', '227 Nguyễn Văn Cừ', 'tuyetnhi@gmail.com', '0123456789');
