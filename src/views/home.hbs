@@ -3,9 +3,107 @@
     <i class="fa fa-home" aria-hidden="true"></i>
     Home
   </h4>
-  <div class="card-body">
-    Sinh viên tự thực hiện.
-  </div>
+ <div class="card-body">
+    <h5>Best sellers </h5>
+    <div class="row">
+     
+      {{#each this.products}}
+    
+        <div class="card m-2" style="width: 200px;">
+          <img src="/imgs/sp/{{ProductID}}/main_thumbs.jpg" alt="{{NameProduct}}" title="{{NameProduct}}"
+            class="card-img-top">
+          <div class="card-body">
+            <a href='/categories/products/{{ProductID}}' class="cus_brand text-dark">
+              <a class="card-title">{{NameProduct}}</a>
+            </a>
+
+            <h5 class="card-title text-danger">Start Price: {{format StartPricce}}</h5>
+            <p class="card-title text-warning">Buy It Now: {{format BIN}}</p>
+            <div class="text-center">
+
+              <a class="btn btn-outline-success text-center" href="/categories/{{CateID}}/products/addwl?ProductId={{ProductID}}">
+                {{#if check}}
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{else}}
+                <i class="fa fa-check" aria-hidden="true"></i>
+                {{/if}}
+              </a>
+
+              {{!-- </form> --}}
+            </div>
+          </div>
+        </div>
+      
+      {{/each}}
+    </div>
+
+    {{!--  --}}
+    <h5>Best sellers 2</h5>
+    <div class="row">
+     
+      {{#each this.products2}}
+    
+        <div class="card m-2" style="width: 200px;">
+          <img src="/imgs/sp/{{ProductID}}/main_thumbs.jpg" alt="{{NameProduct}}" title="{{NameProduct}}"
+            class="card-img-top">
+          <div class="card-body">
+            <a href='/categories/products/{{ProductID}}' class="cus_brand text-dark">
+              <a class="card-title">{{NameProduct}}</a>
+            </a>
+
+            <h5 class="card-title text-danger">Start Price: {{format StartPricce}}</h5>
+            <p class="card-title text-warning">Buy It Now: {{format BIN}}</p>
+            <div class="text-center">
+
+              <a class="btn btn-outline-success text-center" href="/categories/{{CateID}}/products/addwl?ProductId={{ProductID}}">
+                {{#if check}}
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{else}}
+                <i class="fa fa-check" aria-hidden="true"></i>
+                {{/if}}
+              </a>
+
+              {{!-- </form> --}}
+            </div>
+          </div>
+        </div>
+      
+      {{/each}}
+    </div>
+    {{!--  --}}
+        <h5>Best sellers 3</h5>
+    <div class="row">
+     
+      {{#each this.products3}}
+    
+        <div class="card m-2" style="width: 200px;">
+          <img src="/imgs/sp/{{ProductID}}/main_thumbs.jpg" alt="{{NameProduct}}" title="{{NameProduct}}"
+            class="card-img-top">
+          <div class="card-body">
+            <a href='/categories/products/{{ProductID}}' class="cus_brand text-dark">
+              <a class="card-title">{{NameProduct}}</a>
+            </a>
+
+            <h5 class="card-title text-danger">Start Price: {{format StartPricce}}</h5>
+            <p class="card-title text-warning">Buy It Now: {{format BIN}}</p>
+            <div class="text-center">
+
+              <a class="btn btn-outline-success text-center" href="/categories/{{CateID}}/products/addwl?ProductId={{ProductID}}">
+                {{#if check}}
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{else}}
+                <i class="fa fa-check" aria-hidden="true"></i>
+                {{/if}}
+              </a>
+
+              {{!-- </form> --}}
+            </div>
+          </div>
+        </div>
+      
+      {{/each}}
+    </div>
+    </div>
   <div class="card-footer text-muted">
     Footer
   </div>

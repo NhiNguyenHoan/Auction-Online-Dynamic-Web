@@ -10,4 +10,5 @@ module.exports = function(app) {
     app.use('/products', require('../routes/product.route'));
     app.use('/demo', require('../routes/demo.route'));
     app.use('/sell', require('../routes/seller/seller.route'));
+    app.use('/',require('../routes/home.route'));
 };

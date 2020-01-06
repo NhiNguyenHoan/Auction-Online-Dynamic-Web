@@ -2,5 +2,7 @@
     "paginate":
     {
         "limit":8
-    }
+       
+    },
+    "limithome":5
 }
