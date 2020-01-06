@@ -1,0 +1,140 @@
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+  rel="stylesheet" type="text/css" />
+{{/section}}
+
+    <div class="ml-2 mr-3 mb-2">
+        <form method="POST"class="needs-validation" novalidate enctype="multipart/form-data">
+            <div class="md-form">
+                <label for="validationCustom001">Product Title</label>
+                <input type="text" name ="NameProduct" class="form-control" id="validationCustom001" placeholder="Fill out product name" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide your product name!
+                </div>
+            </div>
+            <br>
+             <div class="md-form">
+                <label for="validationCustom004">CateID</label>
+                <input type="text" name ="CateID" class="form-control" id="validationCustom004" placeholder="Fill out product CateID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide CateID!
+                </div>
+            </div>
+            <br>
+             {{!-- <div class="md-form">
+                <label for="validationCustom005">SellerID</label>
+                <input type="text" name ="Seller" class="form-control" id="validationCustom005" placeholder="Fill out SellerID" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide SellerID!
+                </div>
+            </div>             --}}
+</br>         
+            <div class="form-row">
+                <div class="col-md-3 mb-3 md-form">
+                    <label for="validationCustom002">Start Price</label>
+                    <input type="text" name ="StartPricce" class="form-control" id="validationCustom002" placeholder="Fill out start price" required>
+                    <div class="invalid-feedback">
+                        Please provide your price!
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3 md-form">
+                    <label for="validationCustom003">Price Step</label>
+                    <input type="text" name ="Step"class="form-control" id="validationCustom003" placeholder="Fill out price steps" required>
+                    <div class="invalid-feedback">
+                        Please provide price step!
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3 md-form">
+                    <label for="validationCustomUsername2">Buy it now Price</label>
+                    <input type="text" name ="BIN" class="form-control" id="validationCustomUsername2" placeholder="Fill out price for buy it now" required>
+                    <div class="invalid-feedback">
+                        Please provide your BIN price!
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <!---->
+<label for="fuMain">Choose at least 3 images</label>
+      <div class="form-group">
+        <div class="file-loading">
+          <input id="fuMain" name="fuMain[]" type="file" multiple>
+        </div>
+      </div>
+
+
+           
+            <!---->
+
+            <div class="md-form">
+<div class="form-group">
+        <label for="txtFullDes">Full Description</label>
+        <textarea class="form-control" name="Descript" id="txtFullDes" ></textarea>
+      </div>
+            </div>
+            <br>
+
+            <button class="btn cus_btn btn-lg btn-rounded" style="width:100%" type="submit">Sell</button>
+        </form>
+
+    </div>
+    {{#section 'js'}}
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    {{!--upload  --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+<script>
+  $('#fuMain').fileinput({
+    theme: 'fa',
+    dropZoneEnabled: false,
+    allowedFileExtensions: ['png', 'jpg', 'gif'],
+  });
+</script>
+
+
+
+{{!-- edit --}}
+<script
+  src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6"></script>
+<script>
+  tinymce.init({
+    selector: '#txtFullDes',
+    height: 600,
+    plugins: 'paste image link autolink lists table media',
+    menubar: false,
+    toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright',
+      'forecolor backcolor',
+      'table link image media',
+    ],
+  });
+</script>
+{{/section}}
+

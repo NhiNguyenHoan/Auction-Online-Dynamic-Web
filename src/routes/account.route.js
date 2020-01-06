@@ -52,7 +52,13 @@ router.post('/login', async(req, res) => {
   req.session.authUser = user;
 
   res.redirect('/');
-
+  const url = req.query.retUrl || '/';
+  res.redirect(url);
 })
+router.post('/logout', (req, res) => {
+  req.session.isAuthenticated = false;
+  req.session.authUser = null;
+  res.redirect(req.headers.referer);
+});
 
 module.exports = router;

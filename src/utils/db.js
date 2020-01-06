@@ -3,11 +3,11 @@ const util = require('util');
 //pool để giới hạn truy cập
 const pool = mysql.createPool({
     connectionLimit: 50,
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'Kyquan479#',
-    database: 'auction'
+    host:'localhost',
+    port:3306,
+    user:'nhi',
+    password:'root',
+    database:'auction'
 });
 
 const mysql_query = util.promisify(pool.query).bind(pool);
@@ -18,4 +18,5 @@ module.exports = {
     del: (tableName, condition) => mysql_query(`delete from ${tableName} where ?`, condition),
     patch: (tableName, entity, condition) => mysql_query(`update ${tableName} set ? where ?`, [entity, condition]),
     delWL: (tableName, condition1,condition2) => mysql_query(`delete from ${tableName} where ? AND ?`, [condition1,condition2]),
+    
 };
