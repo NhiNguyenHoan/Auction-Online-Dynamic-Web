@@ -22,6 +22,15 @@ router.get('/watchlist', async (req, res) => {
 })
 router.get('/biddinglist', async (req, res) => {
     const rows = await AboutUserModel.biddinglist(res.locals.authUser.UserID);
+    rows.forEach(async element => {
+        var bool =await  AboutUserModel.check({
+            UserID: res.locals.authUser.UserID,
+            ProductID: +element.ProductID
+          });
+          console.log(bool);
+        element.check=(bool.length>0);
+      });
+    //console.log(rows);
     res.render('vwAboutUser/biddinglist', {
         categories: rows,
         empty: rows.length === 0
@@ -33,6 +42,24 @@ router.get('/wonlist', async (req, res) => {
     const rows = await AboutUserModel.wonlist(res.locals.authUser.UserID);
 
     res.render('vwAboutUser/wonlist', {
+        categories: rows,
+        empty: rows.length === 0
+    });
+})
+router.get('/selling', async (req, res) => {
+  
+    
+    const rows = await AboutUserModel.SellingProduct(res.locals.authUser.UserID);
+
+    res.render('vwAboutUser/selling', {
+        categories: rows,
+        empty: rows.length === 0
+    });
+})
+router.get('/sold', async (req, res) => { 
+    const rows = await AboutUserModel.SoldProduct(res.locals.authUser.UserID);
+
+    res.render('vwAboutUser/sold', {
         categories: rows,
         empty: rows.length === 0
     });

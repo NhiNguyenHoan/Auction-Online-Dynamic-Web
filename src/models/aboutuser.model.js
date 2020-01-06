@@ -42,7 +42,19 @@ module.exports = {
             console.log(ProID);
             console.log(id);
     },
-                                  
+    SellingProduct: id => {
+        const sql =
+        `SELECT * FROM product_info p
+        WHERE p.Seller=${id} AND p.EndDate > NOW()`;
+        return db.load(sql);
+    },  
+    SoldProduct: id => {
+        const sql =
+        `SELECT  p.*
+        FROM bidding_history bh, product_info p
+        WHERE bh.ProductID= p.ProductID AND p.Seller=${id}  AND p.enddate < now()`;
+        return db.load(sql);
+    },                     
     search: (inputSearch, id) => {
         // console.log(inputSearch);
         // console.log(id);
@@ -51,5 +63,10 @@ module.exports = {
     FROM watchlist w, product_info p
     WHERE w.UserID=${id} AND w.ProductID = p.ProductID AND p.NameProduct like '%${inputSearch}%'`;
         return db.load(sql);
-    }
+    },
+    check: entity=> db.load(`SELECT  p.*
+    FROM bidding_history bh, product_info p
+    WHERE bh.ProductID= p.ProductID AND bh.ProductID=${entity.ProductID} AND bh.bidder=${entity.UserID} AND bh.bidamount= (SELECT MAX(bh2.bidamount)
+                                                                    FROM bidding_history bh2
+                                                                    WHERE bh2.ProductID= bh.ProductID)`),
 };

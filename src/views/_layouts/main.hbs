@@ -100,19 +100,37 @@ background-color: rgb(222, 223, 224);
                     <li class="nav-item">
                         <a class="nav-link" href="sell.html">Sell</a>
                     </li>
+      {{!-- Dropdown My Product --}}
+                   <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+              <i class="fa fa-cart-plus"></i>My Product</b>
+            </a>
+            <div class="dropdown-menu">
 
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                            <i class="fa fa-user-circle"></i>Hi,<b>{{authUser.UserName}}!</b>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/user/biddinglist">Bidding List</a>
-                            <a class="dropdown-item" href="/user/wonlist">Won List</a>
-                            <a class="dropdown-item" href="/user/information">Information</a>
-                           <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Log out</a>
-                        </div>
-                    </li>
+              <a class="dropdown-item" href="/user/biddinglist">Bidding List</a>
+              <a class="dropdown-item" href="/user/wonlist">Won List</a>
+
+            </div>
+          </li>
+     
+       
+   
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+              <i class="fa fa-user-circle"></i>Hi,&ensp;<b>{{authUser.UserName}}!</b>
+            </a>
+           
+             <div class="dropdown-menu">
+                 {{!-- {{#if authUser.TypeUser === 1}} --}}   
+              <a class="dropdown-item" href="/user/selling">Selling</a>
+              <a class="dropdown-item" href="/user/sold">SOLD</a>
+               {{!-- {{/if}} --}}
+              <a class="dropdown-item" href="/user/information">Information</a>
+              {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}
+              <a class="dropdown-item" href="home_login.html">Log out</a>
+            </div>
+          </li>
                      {{else}}
         <li class="nav-item">
           <a class="nav-link" href="/account/register">Register</a>

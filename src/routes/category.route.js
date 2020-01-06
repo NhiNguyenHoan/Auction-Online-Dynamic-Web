@@ -38,12 +38,12 @@ router.get('/:id/products', async (req, res) => {
   }
 
   rows.forEach(async element => {
-    element.check=(await productModel.check({
+    element.check = (await productModel.check({
       UserID: res.locals.authUser.UserID,
       ProductID: +element.ProductID
-    })==false)
+    }) == false)
   });
-  console.log(rows)
+  // console.log(rows)
   // const rows = await productModel.pageByCat(catId, offset);
   res.render('vwProducts/allByCat', {
 
@@ -71,7 +71,14 @@ router.get('/products/:id', async (req, res) => {
   // console.log(date);
   // console.log(timeleft);
   // console.log(timeString);
-
+  
+    var bool = await productModel.check({
+      UserID: res.locals.authUser.UserID,
+      ProductID: rows[0].ProductID
+    })
+    rows[0].check = (bool!=false) 
+    console.log(rows)  
+  
   res.render('vwProducts/detail', {
     products: rows[0],
     empty: rows.length === 0,
@@ -82,6 +89,7 @@ router.get('/products/:id', async (req, res) => {
 
 
 })
+
 router.get('/:id/products/addwl', async (req, res) => {
   entity = {
     UserID: res.locals.authUser.UserID,
@@ -95,8 +103,24 @@ router.get('/:id/products/addwl', async (req, res) => {
     const rows = await productModel.addWL(entity);
 
     console.log(req.body);
-}
-    res.redirect('./');}),
+  }
+  res.redirect('./');
+}),
 
+  router.get('/products/:id/addwl', async (req, res) => {
+    entity = {
+      UserID: res.locals.authUser.UserID,
+      ProductID: +req.params.id
+    }
+    const check = await productModel.check(entity);
+    if (check != false) {
+      await productModel.deleteWL(entity);
+    }
+    else {
+      const rows = await productModel.addWL(entity);
 
+      console.log(req.body);
+    }
+    res.redirect('./');
+  }),
   module.exports = router;

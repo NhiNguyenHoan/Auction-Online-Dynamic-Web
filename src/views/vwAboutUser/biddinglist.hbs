@@ -38,12 +38,12 @@
     </thead>
     <tbody>
       {{#each this.categories}}
-
-      <tr>
-        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a></th>
-        
+      {{#if check}}
+      <tr style="background-color: rgb(135, 241, 224);">
+        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a>
+        </th>
         <td>{{CateID}}</td>
-        <td> <a href="/categories/products/2"  style="color: black;">{{NameProduct}} </a></td>
+        <td> <a href="/categories/products/2" style="color: black;">{{NameProduct}} </a></td>
         <td>{{Descript}}</td>
         <td>{{BuyDate}}</td>
         <td>{{EndDate}}</td>
@@ -51,9 +51,24 @@
         <td>{{StartPricce}}</td>
         <td>{{BIN}}</td>
         <td>{{Step}}</td>
-
-
       </tr>
+
+      {{else}}
+      <tr>
+        <th scope="row" class="text-center"><a href="/categories/products/2" style="color: black;"> {{ProductID}} </a>
+        </th>
+
+        <td>{{CateID}}</td>
+        <td> <a href="/categories/products/2" style="color: black;">{{NameProduct}} </a></td>
+        <td>{{Descript}}</td>
+        <td>{{BuyDate}}</td>
+        <td>{{EndDate}}</td>
+        <td>{{Seller}}</td>
+        <td>{{StartPricce}}</td>
+        <td>{{BIN}}</td>
+        <td>{{Step}}</td>
+      </tr>
+      {{/if}}
 
 
       {{/each}}

@@ -2,56 +2,54 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Example App</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Example App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
-  .color
-  {
-    color: #8AD8CE;
-  }
-
+    <style>
+        .color {
+            color: #8AD8CE;
+        }
 
 
-.cus_brand {
-    font-size: 30px;
-    margin-right: 30px;
-    color: #8AD8CE;
-    display: flex;
-    align-items: center;
-}
 
-.cus_brand:hover {
-    color: grey;
-    text-decoration: none;
-}
+        .cus_brand {
+            font-size: 30px;
+            margin-right: 30px;
+            color: #8AD8CE;
+            display: flex;
+            align-items: center;
+        }
 
-.cus_btn {
-    background-color: #8AD8CE;
-}
+        .cus_brand:hover {
+            color: grey;
+            text-decoration: none;
+        }
 
-.cus_active
-{
-background-color: rgb(222, 223, 224);
-}
+        .cus_btn {
+            background-color: #8AD8CE;
+        }
 
- /*CSS SLIDE*/
-        
+        .cus_active {
+            background-color: rgb(222, 223, 224);
+        }
+
+        /*CSS SLIDE*/
+
         .slideshow-container {
             max-width: 400px;
             position: relative;
             margin-left: 130px;
         }
-        
+
         .mySlides {
             display: none;
             height: 400px;
             border: solid 1px black;
         }
-        
+
         .prev,
         .next {
             cursor: pointer;
@@ -65,33 +63,35 @@ background-color: rgb(222, 223, 224);
             transition: .6s ease;
             border-radius: 0 3px 3px 0
         }
-        
+
         .next {
             right: -50px;
             border-radius: 3px 3px 3px 3px
         }
-        
+
         .prev {
             left: -50px;
             border-radius: 3px 3px 3px 3px
         }
-        
+
         .prev:hover,
         .next:hover {
             color: #f2f2f2;
             background-color: grey;
         }
-            /*Table CSS*/
-        
+
+        /*Table CSS*/
+
         .my-custom-scrollbar {
             position: relative;
             height: 15rem;
             overflow: auto;
         }
-        
+
         .table-wrapper-scroll-y {
             display: block;
         }
+
         /*Table CSS*/
     </style>
 
@@ -99,24 +99,26 @@ background-color: rgb(222, 223, 224);
 
 <body>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="d-flex flex-grow-1 mx-sm-5">
-            <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
+            <span class="w-100 d-lg-none d-block">
+                <!-- hidden spacer to center brand on mobile --></span>
 
             <img src="https://img.icons8.com/clouds/100/000000/auction.png">
             <a class="brand cus_brand" href="#">Online Auction</a>
 
             <!--Search-->
             <form class="form-inline " action="/search" method="POST">
-                <input class="form-control rounded-0" type="search" placeholder="Search" id="inputSearch" name="inputSearch">
+                <input class="form-control rounded-0" type="search" placeholder="Search" id="inputSearch"
+                    name="inputSearch">
                 <button class="btn cus_btn rounded-0" type="submit">
-                  <i class="fa fa-search"></i>
+                    <i class="fa fa-search"></i>
                 </button>
             </form>
             <form id="frmLogout" method="post" action="/account/logout"></form>
             <div class="collapse navbar-collapse flex-grow-1 text-right">
                 <ul class="navbar-nav ml-auto flex-nowrap">
- {{#if isAuthenticated}}
+                    {{#if isAuthenticated}}
                     <li class="nav-item">
                         <a class="nav-link" href="WatchList.html"><i class="fa fa-star"></i>Watch list</a>
                     </li>
@@ -133,26 +135,26 @@ background-color: rgb(222, 223, 224);
                             <a class="dropdown-item" href="SuccessBidder.html">Purchase Order</a>
                             <a class="dropdown-item" href="SuccessSeller.html">Sales Order</a>
                             <a class="dropdown-item" href="EditInformation.html">Edit Information</a>
-            {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}                            
+                            {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}
                             <a class="dropdown-item" href="home_login.html">Log out</a>
                         </div>
                     </li>
-                     {{else}}
-        <li class="nav-item">
-          <a class="nav-link" href="/account/register">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/account/login">Login</a>
-        </li>
-        {{/if}}
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/login">Login</a>
+                    </li>
+                    {{/if}}
                 </ul>
 
             </div>
         </div>
     </nav>
 
-</br>
- <div class="modal" id="myModal">
+    </br>
+    <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -166,7 +168,8 @@ background-color: rgb(222, 223, 224);
                 <div class="modal-body">
                     <form>
 
-                        <p> <label for="bid">Bid Amount </label> <input type="text" id="bid" name="bid" placeholder="bid" style="margin-left: 30px;"></p>
+                        <p> <label for="bid">Bid Amount </label> <input type="text" id="bid" name="bid"
+                                placeholder="bid" style="margin-left: 30px;"></p>
                         <p>Min Amount:<a style="color:#8AD8CE; font-size:20px">&ensp; 10.000 đ</a> </p>
 
                     </form>
@@ -189,16 +192,20 @@ background-color: rgb(222, 223, 224);
             <div class="slideshow-container">
                 <div class="slideshow-inner">
                     <div class="mySlides">
-                        <img src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg' style='width: 100% ; height: 400px;' alt="FCD8D9" />
+                        <img src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg'
+                            style='width: 100% ; height: 400px;' alt="FCD8D9" />
                     </div>
                     <div class="mySlides">
-                        <img src='/imgs/sp/{{this.products.ProductID}}/a.jpg' style='width: 100% ; height: 400px;' alt="D8EEEC" />
+                        <img src='/imgs/sp/{{this.products.ProductID}}/a.jpg' style='width: 100% ; height: 400px;'
+                            alt="D8EEEC" />
                     </div>
                     <div class="mySlides">
-                        <img src='/imgs/sp/{{this.products.ProductID}}/b.jpg' style='width: 100%; height: 400px;' alt="CAD6EE" />
+                        <img src='/imgs/sp/{{this.products.ProductID}}/b.jpg' style='width: 100%; height: 400px;'
+                            alt="CAD6EE" />
                     </div>
                     <div class="mySlides">
-                        <img src='/imgs/sp/{{this.products.ProductID}}/c.jpg' style='width: 100% ; height: 400px;' alt="FEDABE" />
+                        <img src='/imgs/sp/{{this.products.ProductID}}/c.jpg' style='width: 100% ; height: 400px;'
+                            alt="FEDABE" />
                     </div>
                 </div>
                 <a class="prev" onclick='plusSlides(-1)'>&#10094;</a>
@@ -208,17 +215,14 @@ background-color: rgb(222, 223, 224);
 
             <div style='margin-left:125px;' style="background-color: green;">
                 <span class="a" onclick='currentSlide(1)'><img
-            src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg' 
-            style='width: 100px ; height: 100px;' alt="FCD8D9" /></span>
-                <span class="a" onclick='currentSlide(2)'><img
-            src='/imgs/sp/{{this.products.ProductID}}/b.jpg'
-            style='width: 100px ; height: 100px;' alt="D8EEEC" /></span>
-                <span class="a" onclick='currentSlide(3)'><img
-            src='/imgs/sp/{{this.products.ProductID}}/c.jpg'
-            style='width: 100px ; height: 100px;' alt="CAD6EE" /></span>
-                <span class="a" onclick='currentSlide(4)'><img
-            src='/imgs/sp/{{this.products.ProductID}}/a.jpg'
-            style='width: 100px ; height: 100px;' alt="FEDABE" /></span>
+                        src='/imgs/sp/{{this.products.ProductID}}/main_thumbs.jpg' style='width: 100px ; height: 100px;'
+                        alt="FCD8D9" /></span>
+                <span class="a" onclick='currentSlide(2)'><img src='/imgs/sp/{{this.products.ProductID}}/b.jpg'
+                        style='width: 100px ; height: 100px;' alt="D8EEEC" /></span>
+                <span class="a" onclick='currentSlide(3)'><img src='/imgs/sp/{{this.products.ProductID}}/c.jpg'
+                        style='width: 100px ; height: 100px;' alt="CAD6EE" /></span>
+                <span class="a" onclick='currentSlide(4)'><img src='/imgs/sp/{{this.products.ProductID}}/a.jpg'
+                        style='width: 100px ; height: 100px;' alt="FEDABE" /></span>
             </div>
         </div>
 
@@ -234,11 +238,21 @@ background-color: rgb(222, 223, 224);
             <p>Start Price:<a style="color:#8AD8CE; font-size:20px">&ensp;{{this.products.StartPricce}} $</a> </p>
             <p>Step:<a style="color:#8AD8CE; font-size:20px">&ensp; {{this.products.Step}} $</a> </p>
             <button class="btn cus_btn btn-success mb-2" style=" background-color:rgb(31, 190, 98);">Buy Now:<a style=" color:white;
-      font-size:20px; text-decoration-line: none;" href="Shopping.html" >&ensp; {{this.products.BIN}} $</a> </button>
+      font-size:20px; text-decoration-line: none;" href="Shopping.html">&ensp; {{this.products.BIN}} $</a> </button>
 
-        
-                <p>Time left:
-                    <a style="color:#8AD8CE; font-size:20px">{{this.timeleft}}</a></p>
+
+            <p>Time left:
+                <a style="color:#8AD8CE; font-size:20px">{{this.timeleft}}</a></p>
+
+            <br>
+            <a class="btn btn-success text-center"
+                href="/categories/products/{{this.products.ProductID}}/addwl">
+                 {{#if this.products.check}}
+                  <i class="fa fa-check" aria-hidden="true">Added To Watch List</i>
+                {{else}}
+                  <i class="fa fa-star" aria-hidden="true">Add To Watch List</i>
+                {{/if}}
+            </a>
 
         </div>
         <div class="col-md-3">
@@ -251,7 +265,8 @@ background-color: rgb(222, 223, 224);
                     <h6 class="card-title">Current Price</h6>
                     <h4 style="color:#8AD8CE">{{this.products.StartPricce}} $</h4>
                     <p class="card-text">(Shipping fee are not included)</p>
-                    <a href="#" class="btn cus_btn" style="width:100%; font-weight: bold;font-size: large;" data-toggle="modal" data-target="#myModal">BID</a>
+                    <a href="#" class="btn cus_btn" style="width:100%; font-weight: bold;font-size: large;"
+                        data-toggle="modal" data-target="#myModal">BID</a>
 
                 </div>
             </div>
@@ -259,7 +274,8 @@ background-color: rgb(222, 223, 224);
             <div class="card" style="width: 23rem;">
                 <a class="card-header">Seller Information </a>
                 <div class="card-body">
-                    <a class="card-link" style="color:#8AD8CE;font-size: large;" href="Seller.html" style="font-size: large;">{{this.products.FullName}}</a>
+                    <a class="card-link" style="color:#8AD8CE;font-size: large;" href="Seller.html"
+                        style="font-size: large;">{{this.products.FullName}}</a>
                     <p class="card-text">{{this.products.PhoneNumber}}</p>
                     <img src="https://img.icons8.com/ios/50/000000/cloud.png" style="width:15px;height:15px">
                     <a>Number Like:</a> <a>{{this.products.NumberLike}}</a><br>
@@ -355,17 +371,17 @@ background-color: rgb(222, 223, 224);
         <!--
 -->
 
-      </div>
     </div>
-  </div>
+    </div>
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
         var slideIndex = 1;
         var slideshowContainer;
-        window.addEventListener("load", function() {
+        window.addEventListener("load", function () {
             showSlides(slideIndex);
             slideshowContainer = document.getElementsByClassName('slideshow-inner')[0];
             slideshowContainer.addEventListener('mouseenter', pause)
@@ -405,7 +421,7 @@ background-color: rgb(222, 223, 224);
         }
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#dtHorizontalVerticalExample').DataTable({
                 "scrollX": true,
                 "scrollY": 200,
@@ -414,7 +430,7 @@ background-color: rgb(222, 223, 224);
         });
     </script>
     <script>
-        $time = strtotime($datetimeFromMysql); 
+        $time = strtotime($datetimeFromMysql);
         $myFormatForView = date("m/d/y g:i A", $time);
     </script>
 
