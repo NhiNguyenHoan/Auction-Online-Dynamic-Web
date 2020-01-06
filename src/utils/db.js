@@ -3,11 +3,11 @@ const util = require('util');
 //pool để giới hạn truy cập
 const pool = mysql.createPool({
     connectionLimit: 50,
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'ntcmy1142#',
-    database: 'auction'
+    host:'localhost',
+    port:3306,
+    user:'nhi',
+    password:'root',
+    database:'auction'
 });
 
 const mysql_query = util.promisify(pool.query).bind(pool);

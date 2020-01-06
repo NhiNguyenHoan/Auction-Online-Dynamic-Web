@@ -83,13 +83,18 @@ router.get('/products/:id', async (req, res) => {
       ProductID: rows[0].ProductID
     })
     rows[0].check = (bool!=false) 
-    console.log(rows)  
+    console.log(rows);
+    const price =  +rows[0].StartPricce + rows[0].Step;
+    var invalid = true;
+    if(res.locals.authUser.NumberLike*0.8 >res.locals.authUser.NumberDislike*0.2)
+    invalid=false;
   res.render('vwProducts/detail', {
     products: rows[0],
     empty: rows.length === 0,
     layout: false,
     timeleft: timeleft,
-
+    price:price,
+    invalid:false,
   });
 
 

@@ -152,8 +152,8 @@
                             <a class="dropdown-item" href="/user/sold">SOLD</a>
                             {{!-- {{/if}} --}}
                             <a class="dropdown-item" href="/user/information">Information</a>
-                            {{!-- <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> --}}
-                            <a class="dropdown-item" href="home_login.html">Log out</a>
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">
+                            Log out</a>
                         </div>
                     </li>
                     {{else}}
@@ -178,7 +178,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <!-- Modal Header -->
+                   <!-- Modal Header -->
                     <div class="modal-header">
                         <h4 class="modal-title">BID</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -190,7 +190,7 @@
 
                         <label for="inputLoop">Amount Bid</label>
                         <input type="number" name="BidAmount" value={{this.products.StartPricce}}
-                            min={{this.products.StartPricce}} step={{this.products.Step}} />
+                            min={{price}} step={{this.products.Step}} />
                         {{!-- <input step={{Step}} data-step-max="10" type="number" name="BidAmount" id="inputLoop" value={{StartPricce}} data-decimals="0" min={{StartPricce}} /></p> --}}
                         <p>Step:<a style="color:#8AD8CE; font-size:20px">&ensp; {{this.products.Step}}</a> </p>
 
@@ -200,7 +200,10 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn cus_btn btn-info">Confirm</button>
+                       {{#if invalid}}
+                        <button type="submit" on-click="return {{valid}}" class="btn cus_btn btn-info">Confirm</button>
+                        {{/if}}
+
                     </div>
 
                 </div>
