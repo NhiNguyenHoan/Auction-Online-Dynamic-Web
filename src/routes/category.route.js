@@ -72,12 +72,12 @@ router.get('/products/:id', async (req, res) => {
   // console.log(timeleft);
   // console.log(timeString);
   
-    var bool = await productModel.check({
-      UserID: res.locals.authUser.UserID,
-      ProductID: rows[0].ProductID
-    })
-    rows[0].check = (bool!=false) 
-    console.log(rows)  
+    // var bool = await productModel.check({
+    //   UserID: res.locals.authUser.UserID,
+    //   ProductID: rows[0].ProductID
+    // })
+    // rows[0].check = (bool!=false) 
+    // console.log(rows)  
   
   res.render('vwProducts/detail', {
     products: rows[0],
@@ -89,6 +89,21 @@ router.get('/products/:id', async (req, res) => {
 
 
 })
+
+router.post('/products/:id', async (req, res) => {
+
+  const proId = req.params.id;
+  console.log(req.body.BidAmount);
+  req.body.ProductID = proId;
+  req.body.Bidder =res.locals.authUser.UserID;
+  req.body.BidTime = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss ");
+  const result= await productModel.addAuction(req.body);
+
+  res.redirect('/');
+
+
+})
+
 
 router.get('/:id/products/addwl', async (req, res) => {
   entity = {

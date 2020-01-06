@@ -13,6 +13,7 @@ module.exports = {
     single: id => db.load(`select * from product_info where ProductID = ${id}`),
     single_info_seller: id => db.load(`select * from product_info as p join user as u on p.Seller =u.UserID where ProductID = ${id}`),
     add: entity => db.add('product_info', entity),
+    addAuction: entity => db.add('bidding_history',entity),
     addWL: entity => db.add('watchlist', entity),
    
     deleteWL:  entity=> db.load(`DELETE FROM watchlist w WHERE w.UserID=${entity.UserID} AND w.ProductID=${entity.ProductID}`),

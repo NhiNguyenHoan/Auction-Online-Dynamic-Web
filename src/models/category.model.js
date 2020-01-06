@@ -6,7 +6,7 @@ module.exports = {
     all: () => db.load('select * from Category'),
     single: id => db.load(`select * from Category where CateID = ${id}`),
     add: entity => db.add('Category', entity),
-
+   
     del: id => db.del('Category', { CateID: id }),
     patch: entity => {
         const condition = { CateID: entity.CateID };
@@ -24,9 +24,9 @@ module.exports = {
     detai: id => db.load(`select * from product_info where CateID = ${id}`),
     delP: id => db.del('product_info', { ProductID: id }),
     search: inputSearch => db.load(`select * from product_info where NameProduct like '%${inputSearch}%'`),
-    countProduct: async inputSearch => {
+    countByCat: async inputSearch => {
         const rows = await db.load(`select count(*) as total from product_info where NameProduct like '%${inputSearch}%'`)
         return rows[0].total;
     },
-    pageProduct: (inputSearch, offset) => db.load(`select * from product_info where NameProduct like '%${inputSearch}%' limit ${config.paginate.limit} offset ${offset}`),
+    pageByCat: (inputSearch, offset) => db.load(`select * from product_info where NameProduct like '%${inputSearch}%' limit ${config.paginate.limit} offset ${offset}`),
 };

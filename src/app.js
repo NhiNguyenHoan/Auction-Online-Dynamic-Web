@@ -14,29 +14,29 @@ app.use(morgan('dev'));
 //hai middewware hỗ trợ
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: true
+  extended: true
 }));
 
 app.use(session({
-        secret: 'keyboard cat',
-        resave: false,
-        saveUninitialized: true,
+  secret:'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
 
-    }))
-    //e
-    //express static hỗ trợ tạo route cho các tệp trong folder
+}))
+//e
+//express static hỗ trợ tạo route cho các tệp trong folder
 app.use(express.static('public'));
 
 app.engine('hbs', exphbs({
-    defaultLayout: 'main.hbs',
-    layoutsDir: 'views/_layouts',
-    //hbr cho xây dựng hàm gọi là helper
-    helpers: {
-        //hàm thêm kí tự $ vào chuỗi tiền
-        format: val => val + '$',
-        //section:{{{}}}
-        section: hbs_sections(),
-    }
+  defaultLayout: 'main.hbs',
+  layoutsDir: 'views/_layouts',
+  //hbr cho xây dựng hàm gọi là helper
+  helpers: {
+    //hàm thêm kí tự $ vào chuỗi tiền
+    format: val =>  val +'$',
+     //section:{{{}}}
+     section: hbs_sections(),
+  }
 
 }));
 app.set('view engine', 'hbs');
@@ -48,21 +48,20 @@ require('./middlewares/routes.mdw')(app);
 
 
 app.get('/', (req, res) => {
-    // res.end('hello from expressjs');
-    console.log(res.locals.authUser);
-    res.render('home');
+  // res.end('hello from expressjs');
+  console.log(res.locals.authUser);
+  res.render('home');
 })
 
 app.get('/about', (req, res) => {
-    res.render('about');
+  res.render('about');
 })
 
 
 //hàm bắt lỗi sai đường dẫn
 app.use((req, res, next) => {
-    console.log('you\'re lost');
-    res.render('error', { layout: false });
-    //res.send('You\'re lost');
+  // res.render('vwError/404');
+  res.send('You\'re lost');
 })
 
 //
@@ -70,14 +69,12 @@ app.use((req, res, next) => {
 // default error handler
 
 app.use((err, req, res, next) => {
-    // res.render('vwError/index');
-    console.error(err.stack);
-    console.log('error on csl');
-    res.render('error', { layout: false });
-    // res.status(500).send('View error on console.');
+  // res.render('vwError/index');
+  console.error(err.stack);
+  res.status(500).send('View error on console.');
 })
 
 const PORT = 3000;
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 })
