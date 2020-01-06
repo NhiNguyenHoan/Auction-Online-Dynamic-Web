@@ -1,0 +1,53 @@
+<div class="card shadow">
+  <h4 class="card-header">
+    Waiting List
+  </h4>
+
+  {{#if this.empty}}
+  <div class="card-body">
+    <p class="card-text">
+      Không có dữ liệu.
+    </p>
+  </div>
+  {{else}}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">User</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Type User</th>
+        <th scope="col">Like</th>
+        <th scope="col">Dislike</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each this.users}}
+      <tr>
+        <th scope="row" class="text-center">{{UserID}}</th>
+        <td>{{FullName}}</td>
+        <td>{{Address}}</td>
+        <td>{{Email}}</td>
+        <td>{{PhoneNumber}}</td>
+        <td>{{Birthday}}</td>
+        <td>{{TypeUser}}</td>
+        <td>{{NumberLike}}</td>
+        <td>{{NumberDislike}}</td>
+        <td class="text-right">
+          <a class="btn btn-sm btn-primary" href="/admin/users/waitinglist/{{UserID}}/upgrade" role="button">
+            <i class="fa fa-universal-access" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
+
+  <div class="card-footer text-muted">
+    Footer
+  </div>
+</div>
