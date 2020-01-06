@@ -359,6 +359,12 @@ INSERT INTO `auction`.`list_categories` (`CateID`, `ProductID`) VALUES ('5', '11
 */
 --
 use auction;
+update user set pass='$2a$10$eX1jGFC7SWQ1twmUi9vZZ.dQ2VZYnflWhdVrJ5cdO2XqD84oyLBKa' where UserID =1;
+INSERT INTO `auction`.`user` (`UserName`,`FullName`, `pass`, `Address`, `Email`, `PhoneNumber`, `Birthday`, `TypeUser`, `NumberLike`, `NumberDislike`) VALUES ('CamMyyy','Cam My', '123456', '227 Nguyễn Văn Cừ', 'mymy@gmail.com', '0123456789', '1999-01-01', 3, 0, 0);
+INSERT INTO `auction`.`user` (`UserName`,`FullName`, `pass`, `Address`, `Email`, `PhoneNumber`, `Birthday`, `TypeUser`, `NumberLike`, `NumberDislike`) VALUES ('KyQuann','Ky Quan', '123456', '227 Nguyễn Văn Cừ', 'quanky@gmail.com', '0123456789', '1999-01-01', 3, 25, 25);
+INSERT INTO `auction`.`user` (`UserName`,`FullName`, `pass`, `Address`, `Email`, `PhoneNumber`, `Birthday`, `TypeUser`, `NumberLike`, `NumberDislike`) VALUES ('TuyetNhii','Tuyet Nhi', '123456', '227 Nguyễn Văn Cừ', 'tuyetnhi@gmail.com', '0123456789', '1999-09-20', 3, 50, 10);
+
+
 select* from Category;
 -- select* from list_categories;
 select* from product_info;
