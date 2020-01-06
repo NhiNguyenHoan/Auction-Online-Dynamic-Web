@@ -26,10 +26,10 @@
         <th scope="col">Descript</th>
         <th scope="col">BuyDate</th>
         <th scope="col">EndDate</th>
-        <th scope="col">Seller</th>
-        <th scope="col">Start Price</th>
-        <th scope="col">BIN</th>
-        <th scope="col">Step</th>
+        <th scope="col">Winner</th>
+        <th scope="col">Sold Price</th>
+        <th scope="col">Like</th>
+        <th scope="col">DisLike</th>
        
         </th>
       </tr>
@@ -43,10 +43,18 @@
         <td>{{Descript}}</td>
         <td>{{BuyDate}}</td>
         <td>{{EndDate}}</td>
-       <td>{{UserName}}</td>
-        <td>{{StartPricce}}</td>
-        <td>{{BIN}}</td>
-        <td>{{Step}}</td>
+       <td>{{Bidder}}</td>
+        <td>{{BidAmount}}</td>
+         <td>
+          <a class="btn btn-primary" style="float:right" href="/user/sold/like/{{Bidder}}">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          </a>
+        </td>
+        <td>
+            <a class="btn btn-primary" style="float:right" href="/user/sold/dislike/{{Bidder}}">
+            <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+          </a>
+        </td>
         <td>
           
           {{!-- <form class="form-inline " action="/user/{{authUser.UserID}}/watchlist/delete/{{ProductID}}" method="POST">

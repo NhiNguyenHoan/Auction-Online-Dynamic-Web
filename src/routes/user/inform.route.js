@@ -40,13 +40,33 @@ router.get('/wonlist', async (req, res) => {
 
 
     const rows = await AboutUserModel.wonlist(res.locals.authUser.UserID);
-
+    
     res.render('vwAboutUser/wonlist', {
         categories: rows,
         empty: rows.length === 0
     });
 })
+router.get('/wonlist/like/:id', async (req, res) => {
 
+
+    const rows = await AboutUserModel.singleUser(+req.params.id);
+
+    rows[0].NumberLike=   rows[0].NumberLike+1;
+    console.log("Seller: ",req.params.id);
+    console.log(rows[0].NumberLike);
+    await AboutUserModel.patchUser(rows[0]);
+    res.redirect('/user/wonlist');
+})
+router.get('/wonlist/dislike/:id', async (req, res) => {
+
+    console.log("hello");
+    const rows = await AboutUserModel.singleUser(+req.params.id);
+    console.log("Seller: ",req.params.id);
+    rows[0].NumberDislike=   rows[0].NumberDislike+1;
+    console.log(rows[0].NumberDislike);
+    await AboutUserModel.patchUser(rows[0]);
+    res.redirect('/user/wonlist');
+})
 // Selling
 router.get('/selling', async (req, res) => {
 
@@ -82,12 +102,35 @@ router.post('/edit/:id', async (req, res) => {
 // SOLD
 router.get('/sold', async (req, res) => {
     const rows = await AboutUserModel.SoldProduct(res.locals.authUser.UserID);
-
+    
    
     res.render('vwAboutUser/sold', {
         categories: rows,
         empty: rows.length === 0
     });
+})
+router.get('/sold/like/:id', async (req, res) => {
+
+
+    const rows = await AboutUserModel.singleUser(+req.params.id);
+
+    rows[0].NumberLike=   rows[0].NumberLike+1;
+    console.log("Bidder: ",req.params.id);
+    console.log(rows[0].NumberLike);
+    await AboutUserModel.patchUser(rows[0]);
+    res.redirect('/user/sold');
+})
+
+router.get('/sold/dislike/:id', async (req, res) => {
+
+  
+    const rows = await AboutUserModel.singleUser(+req.params.id);
+
+    rows[0].NumberDislike=   rows[0].NumberDislike+1;
+    console.log("Bidder: ",req.params.id);
+    console.log(rows[0].NumberDislike);
+    await AboutUserModel.patchUser(rows[0]);
+    res.redirect('/user/sold');
 })
 router.post('/watchlist/search', async (req, res) => {
     const rows = await AboutUserModel.search(req.body.inputSearchWL, res.locals.authUser.UserID);

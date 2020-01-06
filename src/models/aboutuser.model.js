@@ -12,10 +12,16 @@ module.exports = {
     // },
     // detai: id => db.load(`select * from product_info where CateID = ${id}`),
     single: id => db.load(`select * from product_info p where p.ProductID = ${id}`),
+    singleUser: id => db.load(`select * from user u where u.userid = ${id}`),
     patch: entity => {
         const condition = { ProductID: entity.ProductID };
         delete entity.ProductID;
         return db.patch('Product_info', entity, condition);
+    },
+    patchUser: entity => {
+        const condition = { UserID: entity.UserID };
+        delete entity.UserID;
+        return db.patch('user', entity, condition);
     },
     watchlist: id => {
         const sql =
@@ -27,14 +33,17 @@ module.exports = {
  
     biddinglist: id => {
         const sql =
-        `SELECT distinct p.*, u.UserName
+        `SELECT distinct p.*, u.UserName, bh.BidAmount
         FROM bidding_history bh, product_info p, user u
-        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} AND p.Seller= u.UserID  AND p.enddate > now() ;`;
+        WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} AND p.Seller= u.UserID  AND p.enddate > now()AND bh.BidTime >= ALL 
+                                                                                            (SELECT bh2.BidTime
+                                                                                            FROM bidding_history bh2
+                                                                                             WHERE bh2.ProductID= bh.ProductID AND  bh2.bidder=${id}) `;
         return db.load(sql);
     },
     wonlist: id => {
         const sql =
-        `SELECT  p.*
+        `SELECT  p.*, u.UserName, bh.BidAmount
         FROM bidding_history bh, product_info p, user u
         WHERE bh.ProductID= p.ProductID AND bh.bidder=${id} AND p.Seller= u.UserID AND bh.bidamount= (SELECT MAX(bh2.bidamount)
                                                                         FROM bidding_history bh2
@@ -58,7 +67,10 @@ module.exports = {
         const sql =
         `SELECT  *
         FROM bidding_history bh, product_info p, user u
-        WHERE bh.ProductID= p.ProductID AND p.Seller=${id} AND p.Seller= u.UserID  AND p.enddate < now()`;
+        WHERE bh.ProductID= p.ProductID AND p.Seller=${id} AND p.Seller= u.UserID  AND p.enddate < now() AND bh.BidAmount=
+                                                                                                            (SELECT MAX(bh2.bidamount)
+                                                                                                             FROM bidding_history bh2
+                                                                                                            WHERE bh2.ProductID= bh.ProductID)`;
         return db.load(sql);
     },                     
     search: (inputSearch, id) => {
