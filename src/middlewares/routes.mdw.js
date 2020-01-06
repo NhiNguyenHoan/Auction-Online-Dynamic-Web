@@ -9,5 +9,7 @@ module.exports = function(app) {
     app.use('/user/information', require('../routes/user/user.route'));
     app.use('/demo', require('../routes/demo.route'));
     app.use('/sell', require('../routes/seller/seller.route'));
-    app.use('/',require('../routes/home.route'));
+    app.use('/', require('../routes/home.route'));
+    app.use('/products', require('../routes/product.route'));
+
 };

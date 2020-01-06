@@ -14,13 +14,14 @@ router.get('/', async(req, res) => {
 
 router.get('/edit', async(req, res) => {
     const rows = await userModel.info(res.locals.authUser.UserID);
-    //console.log(res.locals.authUser.UserID);
+    console.log(res.locals.authUser.UserID);
     if (rows.length === 0) {
         throw new Error('Invalid user id');
     }
     res.render('vwUsers/edit', {
         user: rows[0]
     });
+
 })
 
 router.post('/patch', async(req, res) => {
