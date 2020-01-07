@@ -123,7 +123,7 @@
                         <a class="nav-link" href="/user/watchlist"><i class="fa fa-star"></i>Watch list</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="sell.html">Sell</a>
+                        <a class="nav-link" href="/sell/upload">Sell</a>
                     </li>
                     {{!-- Dropdown My Product --}}
                     <li class="nav-item dropdown">
@@ -200,8 +200,9 @@
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                       {{#if invalid}}
                         <button type="submit" on-click="return {{valid}}" class="btn cus_btn btn-info">Confirm</button>
+                       {{#if invalid}}
+                        <div class="alert alert-light" role="alert">You can't bid!</div>
                         {{/if}}
 
                     </div>
@@ -314,7 +315,7 @@
             <div class="card" style="width: 23rem;">
                 <a class="card-header">Seller Information </a>
                 <div class="card-body">
-                    <a class="card-link" style="color:#8AD8CE;font-size: large;" href="Seller.html"
+                    <a class="card-link" style="color:#8AD8CE;font-size: large;" href="#"
                         style="font-size: large;">{{this.products.FullName}}</a>
                     <p class="card-text">{{this.products.PhoneNumber}}</p>
                     <img src="https://img.icons8.com/ios/50/000000/cloud.png" style="width:15px;height:15px">

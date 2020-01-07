@@ -90,7 +90,7 @@ background-color: rgb(222, 223, 224);
                   <i class="fa fa-search"></i>
                 </button>
             </form>
-            <form id="frmLogout" method="post" action="/account/logout"></form>
+           <form id="frmLogout" method="post" action="/account/logout"></form>
             <div class="collapse navbar-collapse flex-grow-1 text-right">
                 <ul class="navbar-nav ml-auto flex-nowrap">
                 {{#if isAuthenticated}}
@@ -98,7 +98,7 @@ background-color: rgb(222, 223, 224);
                         <a class="nav-link" href="/user/watchlist"><i class="fa fa-star"></i>Watch list</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="sell.html">Sell</a>
+                        <a class="nav-link" href="/sell/upload">Sell</a>
                     </li>
       {{!-- Dropdown My Product --}}
                    <li class="nav-item dropdown">
@@ -126,9 +126,9 @@ background-color: rgb(222, 223, 224);
               <a class="dropdown-item" href="/user/selling">Selling</a>
               <a class="dropdown-item" href="/user/sold">SOLD</a>
                {{!-- {{/if}} --}}
-              <a class="dropdown-item" href="javascript: $('#frmLogout').submit();"> 
+              <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Logout</a>
               {{!-- <a class="dropdown-item" href="home_login.html"> --}}
-                Log out</a>
+                {{!-- Log out</a> --}}
             </div>
           </li>
                      {{else}}
